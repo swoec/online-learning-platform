@@ -55,8 +55,9 @@ public class VideoServiceImpl extends GenericServiceImpl<VideosWithBLOBs, Long>i
 	public List<VideosWithBLOBs> getAllVideo() {
 		// TODO Auto-generated method stub
 		VideosExample example = new VideosExample();
-		example.createCriteria().andUidEqualTo(1);
-		return videomaper.selectByExampleWithBLOBs(example);
+		//example.createCriteria().andUidEqualTo(1);
+		System.out.println("-------video----list-------------");
+		return videomaper.selectByExampleWithBLOBs(null);
 	}
 
 	/* (non-Javadoc)

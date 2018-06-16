@@ -41,14 +41,20 @@ public class WordServiceImpl extends GenericServiceImpl<WordsWithBLOBs, Long>imp
 	public List<WordsWithBLOBs> getWordbyId(int id) {
 		// TODO Auto-generated method stub
 		WordsWithBLOBs  ad =wordmaper.selectByPrimaryKey(id);
+		List <WordsWithBLOBs> alist = new ArrayList();
+		if(ad != null) {
 		System.out.println("----get by id-----"+ad.getUid());
 		System.out.println(ad.getExp());
 		System.out.println(ad.getSentance());
 		System.out.println(ad.getImg());
 		System.out.println(ad.getSynon());
 		System.out.println("-----get by id------"+ad.getUid());
-		List <WordsWithBLOBs> alist = new ArrayList();
+		
 		alist.add(ad);
+		}else {
+			alist.add(null);
+		}
+		
 		return alist;
 	}
 
@@ -59,14 +65,19 @@ public class WordServiceImpl extends GenericServiceImpl<WordsWithBLOBs, Long>imp
 	public List<WordsWithBLOBs> getAllWord() {
 		// TODO Auto-generated method stub
 		WordsWithBLOBs  ad =wordmaper.selectByPrimaryKey(1);
+		List <WordsWithBLOBs> alist = new ArrayList();
+		
+		if(ad !=null) {
 		System.out.println(ad.getUid());
 		System.out.println(ad.getExp());
 		System.out.println(ad.getSentance());
 		System.out.println(ad.getImg());
 		System.out.println(ad.getSynon());
 		System.out.println(ad.getUid());
-		List <WordsWithBLOBs> alist = new ArrayList();
 		alist.add(ad);
+		}else {
+			alist.add(null);
+		}
 		return alist;
 		
 	}

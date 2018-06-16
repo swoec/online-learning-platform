@@ -312,8 +312,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     <!--div id="main-content"></div-->
      <!---------------------------- begin ------------------------------------------------------------------------------------ -->
                     
-       <div id="main-content">
-       <iframe id="context" name="context" src="rest/word/context" frameborder="0" marginheight="0" marginwidth="0" style="width:100%;height:500px;border:0px"></iframe>
+       <div id="main-content" style="height:600px;">
+       <iframe id="context" name="context" src="rest/word/context"  frameborder="0" marginheight="0" marginwidth="0" style="width:100%;height:100%;border:0px"></iframe>
        </div>
                     
    <!------------------------ ------------------end ------------------------------------------------------------------------------------------- -->
@@ -366,6 +366,22 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 $(this).addClass('active');
             });
         });
+        window.onload = function () {
+        	//setIframeHeight(document.getElementById('context'));
+        	};
+        function setIframeHeight(iframe) {
+        	if (iframe) {
+        	var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+        	if (iframeWin.document.body) {
+        	iframe.height = iframeWin.document.documentElement.scrollHeight+20 || iframeWin.document.body.scrollHeight+20;
+        	}
+        	}
+        	};
+        	
+        function changeFrameHeight(){
+            var ifm= document.getElementById("context");
+            ifm.height=document.documentElement.clientHeight-5; //56是头顶的高度，和网友估计不一样。
+        }
         
         function loadright(url){
         	var iframe = "<iframe id='context' name='context' src='"+url+"'frameborder'='0' marginheight='0' marginwidth='0' style='width:100%;height:500px;border:0px'></iframe>";

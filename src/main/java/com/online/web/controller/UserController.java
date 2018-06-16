@@ -1,10 +1,14 @@
 package main.java.com.online.web.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -18,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import main.java.com.online.web.model.Books;
+import main.java.com.online.web.model.Students;
 import main.java.com.online.web.model.User;
 import main.java.com.online.web.security.PermissionSign;
 import main.java.com.online.web.security.RoleSign;
+import main.java.com.online.web.service.StudentService;
 import main.java.com.online.web.service.UserService;
 
 
@@ -33,9 +40,13 @@ import main.java.com.online.web.service.UserService;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-
+	private static Logger logger = Logger.getLogger(UserController.class);
     @Resource
     private UserService userService;
+    
+    @Resource
+    private StudentService studentservice;
+    
 
     /**
      * 用户登录
@@ -108,5 +119,22 @@ public class UserController {
     @RequiresPermissions(value = PermissionSign.USER_CREATE)
     public String create() {
         return "拥有user:create权限,能访问";
+    }
+    
+	@RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String context(HttpServletRequest request, HttpServletResponse response) { 
+    	System.out.println("-------------------------book---------");
+    	logger.info("------book-----context---------");
+       
+        return "studentlist";
+    }
+
+	@ResponseBody
+    @RequestMapping(value="/studentlist" ,method = RequestMethod.POST)
+    public List<Students> getAllBooksDis(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~book---~~~~~");
+		
+		return studentservice.getAllStudent();
+	
     }
 }

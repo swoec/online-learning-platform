@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.java.com.online.web.dao.BooksMapper" >
+  <resultMap id="BaseResultMap" type="main.java.com.online.web.model.Books" >
+    <id column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="bname" property="bname" jdbcType="VARCHAR" />
+    <result column="bdesc" property="bdesc" jdbcType="VARCHAR" />
+    <result column="blink" property="blink" jdbcType="VARCHAR" />
+    <result column="blocation" property="blocation" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="bpic" property="bpic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bid, bname, bdesc, blink, blocation, status, bpic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="main.java.com.online.web.model.BooksExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from books
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from books
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="main.java.com.online.web.model.BooksExample" >
+    delete from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="main.java.com.online.web.model.Books" >
+    insert into books (bid, bname, bdesc, 
+      blink, blocation, status, 
+      bpic)
+    values (#{bid,jdbcType=INTEGER}, #{bname,jdbcType=VARCHAR}, #{bdesc,jdbcType=VARCHAR}, 
+      #{blink,jdbcType=VARCHAR}, #{blocation,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{bpic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.online.web.model.Books" >
+    insert into books
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="bname != null" >
+        bname,
+      </if>
+      <if test="bdesc != null" >
+        bdesc,
+      </if>
+      <if test="blink != null" >
+        blink,
+      </if>
+      <if test="blocation != null" >
+        blocation,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bpic != null" >
+        bpic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bname != null" >
+        #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="bdesc != null" >
+        #{bdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="blink != null" >
+        #{blink,jdbcType=VARCHAR},
+      </if>
+      <if test="blocation != null" >
+        #{blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bpic != null" >
+        #{bpic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="main.java.com.online.web.model.BooksExample" resultType="java.lang.Integer" >
+    select count(*) from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update books
+    <set >
+      <if test="record.bid != null" >
+        bid = #{record.bid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bname != null" >
+        bname = #{record.bname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdesc != null" >
+        bdesc = #{record.bdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blink != null" >
+        blink = #{record.blink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blocation != null" >
+        blocation = #{record.blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpic != null" >
+        bpic = #{record.bpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update books
+    set bid = #{record.bid,jdbcType=INTEGER},
+      bname = #{record.bname,jdbcType=VARCHAR},
+      bdesc = #{record.bdesc,jdbcType=VARCHAR},
+      blink = #{record.blink,jdbcType=VARCHAR},
+      blocation = #{record.blocation,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      bpic = #{record.bpic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.online.web.model.Books" >
+    update books
+    <set >
+      <if test="bname != null" >
+        bname = #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="bdesc != null" >
+        bdesc = #{bdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="blink != null" >
+        blink = #{blink,jdbcType=VARCHAR},
+      </if>
+      <if test="blocation != null" >
+        blocation = #{blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bpic != null" >
+        bpic = #{bpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.online.web.model.Books" >
+    update books
+    set bname = #{bname,jdbcType=VARCHAR},
+      bdesc = #{bdesc,jdbcType=VARCHAR},
+      blink = #{blink,jdbcType=VARCHAR},
+      blocation = #{blocation,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      bpic = #{bpic,jdbcType=VARCHAR}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

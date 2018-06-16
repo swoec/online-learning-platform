@@ -28,16 +28,16 @@
 </head>
 <style>
 .com {
-	margin: 40px;
+	margin: 1px;
 	overflow: hidden;
 }
 
 .padding20 {
-	padding: 60px;
+	padding: 1px;
 }
 
 #index {
-	margin-top: 25px;
+	margin-top: 2px;
 }
 #test{animation:change 30s linear 0s infinite;font-size:20px;font-weight:300;}
 @keyframes change{0%   {color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}
@@ -46,8 +46,7 @@
 @keyframes change{0%   {color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}
 </style>
 
-<body 
-	style="background:url(<c:url value='/assets/static/images/1.png'/>) no-repeat;">
+<body >
 
 	
 	<div class="container" ng-app="ngapp">
@@ -114,7 +113,8 @@
 				ajaxModule.addOrder(userId, comId);
 			};
 			$scope.getNewWord = function(id){
-				ajaxModule.getWordById(id,function(res){					
+				ajaxModule.getWordById(id,function(res){		
+					
 					if(res != null && typeof res != undefined && res!= ""){						
 						$("#index").scope().coms = res;
 						$("#index").scope().$apply();

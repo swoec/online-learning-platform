@@ -24,6 +24,10 @@
                 /rest/word/context = anon
                 /rest/word/word/** = anon
                 /rest/word/wordlist = anon 
+                /rest/word/videocontext = anon
+                /rest/word/videolist = anon
+                /rest/user/student = anon
+                /rest/user/studentlist = anon
                 
                
                 /word/** = anon

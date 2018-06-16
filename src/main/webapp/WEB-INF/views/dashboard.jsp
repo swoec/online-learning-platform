@@ -26,7 +26,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="details">
                 <div class="number">549</div>
             </div>
-            <a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i>
+            <a class="more" href="#" onclick="loadPage('<%=basePath%>rest/word/videocontext')"> View more <i class="m-icon-swapright m-icon-white"></i>
             </a>
         </div>
     </div>
@@ -38,7 +38,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="details">
                 <div class="number">89</div>
             </div>
-            <a class="more" href="/rest/word/context"> View more <i class="m-icon-swapright m-icon-white"></i>
+            <a class="more" href="#" onclick="loadPage('<%=basePath%>rest/user/student')"> View more <i class="m-icon-swapright m-icon-white"></i>
             </a>
         </div>
     </div>
@@ -50,7 +50,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="details">
                 <div class="number">12</div>
             </div>
-            <a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i>
+            <a class="more" href="#" onclick="loadPage('<%=basePath%>rest/book/books')"> View more <i class="m-icon-swapright m-icon-white"></i>
             </a>
         </div>
     </div>
@@ -68,7 +68,7 @@ function display(url){
 function loadPage(url){
 	
 	//$('#context',window.parent.document).src = url;
-	var iframe = "<iframe id='context' name='context' src='"+url+"'frameborder'='0' marginheight='0' marginwidth='0' style='width:100%;height:500px;border:0px'></iframe>";
+	var iframe = "<iframe id='context' name='context' frameborder='0' src='"+url+"'frameborder'='0' marginheight='0' marginwidth='0'  scrolling='auto' style='width:100%;height:100%;border:0px'></iframe>";
 	 window.parent.document.getElementById("main-content").innerHTML = iframe;
     //window.parent.open(url,'context','');// testLoad为iframe的name属性
 	 //self.opener.location.reload();

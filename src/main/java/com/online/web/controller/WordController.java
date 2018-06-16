@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import main.java.com.online.web.model.VideosWithBLOBs;
 import main.java.com.online.web.model.WordsWithBLOBs;
+import main.java.com.online.web.service.VideoService;
 import main.java.com.online.web.service.WordService;
 
 /**  
@@ -40,6 +42,9 @@ public class WordController {
 	private static Logger logger = Logger.getLogger(WordController.class);
 	@Resource
 	private WordService wordservice;
+	
+	@Resource
+	private VideoService vedioservice;
 
 	
 	/*add for word list start*/
@@ -78,5 +83,30 @@ public class WordController {
 		
         //return rw;
         return "wordlist";
+    }
+    
+    /**
+     * 
+     * 
+     * @param session
+     * @return
+     */
+	
+    @RequestMapping(value = "/videocontext", method = RequestMethod.GET)
+    public String videocontext(HttpServletRequest request, HttpServletResponse response) { 
+    	System.out.println("---------------video----------context---------");
+    	logger.info("------word-----context-----video----------");
+        ModelAndView rw = new ModelAndView("newwordlist2");
+		
+        //return rw;
+        return "newwordlist2";
+    }
+    @ResponseBody
+    @RequestMapping(value="/videolist" ,method = RequestMethod.POST)
+    public List<VideosWithBLOBs> getAllVideoDis(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~video~~~~~");
+		
+		return vedioservice.getAllVideo();
+	
     }
 }
